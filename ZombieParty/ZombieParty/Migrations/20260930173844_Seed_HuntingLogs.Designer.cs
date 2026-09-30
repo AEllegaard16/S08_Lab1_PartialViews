@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZombieParty.Models.Data;
 
@@ -11,9 +12,11 @@ using ZombieParty.Models.Data;
 namespace ZombieParty.Migrations
 {
     [DbContext(typeof(ZombiePartyDbContext))]
-    partial class ZombiePartyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260930173844_Seed_HuntingLogs")]
+    partial class Seed_HuntingLogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,6 +64,32 @@ namespace ZombieParty.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HuntingLogs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Nous avons exploré la forêt au nord du village. Plusieurs traces de zombies ont été trouvées près de la rivière.",
+                            Title = "Première sortie dans la forêt"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Une patrouille a été envoyée dans le vieux quartier afin de vérifier les maisons abandonnées. Trois zombies ont été repérés.",
+                            Title = "Patrouille du vieux quartier"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Une activité inhabituelle a été observée autour du cimetière. L'équipe a dû battre en retraite après avoir été encerclée.",
+                            Title = "Nuit au cimetière"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "La ferme abandonnée a été sécurisée. Plusieurs zombies étaient cachés dans la grange et autour de la maison.",
+                            Title = "Nettoyage de la ferme"
+                        });
                 });
 
             modelBuilder.Entity("ZombieParty.Models.Weapon", b =>
